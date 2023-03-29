@@ -1,12 +1,14 @@
-import time , pyttsx3 , speech_recognition as sr
+import time
+import pyttsx3
+import speech_recognition as sr
 from functions import *
 
-# Variables 
+
+# Variables
 i = ''
 ra = pyttsx3.init()
-ra.setProperty('rate',150)
+ra.setProperty('rate', 150)
 r = sr.Recognizer()
-
 
 
 with sr.Microphone() as source:
@@ -21,10 +23,11 @@ try:
 except sr.UnknownValueError:
     print("Google Speech Recognition could not understand audio")
 except sr.RequestError as e:
-    print("Could not request results from Google Speech Recognition service; {0}".format(e))
+    print(
+        "Could not request results from Google Speech Recognition service; {0}".format(e))
 
 
-def record(question) :
+def record(question):
     with sr.Microphone() as source:
         r.adjust_for_ambient_noise(source)
         ra.say(question)
@@ -32,33 +35,35 @@ def record(question) :
         audio = r.listen(source)
         text = r.recognize_google(audio)
         return text
+
+
 i = i.lower()
-if i == 'search about something' :
+if i == 'search about something':
     text = record('what do you wanna search about ?')
-    try: 
+    try:
         Orders.SearchAboutSomething(text)
-    except :
-        pass 
-elif i == 'search in youtube' :
+    except:
+        pass
+elif i == 'search in youtube':
     text = record('what do you wanna search about ?')
-    try: 
+    try:
         Orders.SearchInYoutube(text)
-    except :
-        pass 
-elif i == 'open an application' :
+    except:
+        pass
+elif i == 'open an application':
     text = record('which application do you want to open ?')
-    try: 
+    try:
         Orders.OpenAnApp(text)
-    except :
-        pass 
-elif i == 'open a website' :
+    except:
+        pass
+elif i == 'open a website':
     text = record('which website do you want to visit ?')
-    try: 
+    try:
         Orders.OpenWebSite(text)
-    except :
-        pass 
-else :
-    try :
+    except:
+        pass
+else:
+    try:
         record('Sorry , we cannot do your order')
-    except :
+    except:
         pass
