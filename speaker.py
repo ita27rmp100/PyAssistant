@@ -1,8 +1,11 @@
 import time
 import pyttsx3
 import speech_recognition as sr
-from functions import *
+from utils import *
 
+
+menu = Menu()
+menu.draw()
 
 # Variables
 i = ''
